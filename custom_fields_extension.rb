@@ -13,6 +13,7 @@ class CustomFieldsExtension < Radiant::Extension
   # end
   
   def activate
+    Page.send(:include, CustomFields::PageExtensions)
     # admin.tabs.add "Custom Fields", "/admin/custom_fields", :after => "Layouts", :visibility => [:all]
   end
   
