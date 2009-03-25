@@ -1,0 +1,43 @@
+<%= show_flash_message %>
+<div id="cf">
+  <div id="index_custom_fields">
+    <h4>Custom fields:<h4>
+    <table class="cf_forms">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @custom_fields.each do |cf| %>
+          <% form_for :custom_field, :url => custom_field_path(@page, cf), :html => {:method => :put} do |f| %>
+          <%= f.hidden_field :page_id, :value => params[:page_id] %>
+          <tr>
+            <td class="cf_name">
+              <%= f.text_field :name, :value => cf.name %>
+            </td>
+            <td class="cf_value">
+              <%= f.text_area :value, :value => cf.value, :cols => 50, :rows => 2 %>
+            </td>
+          </tr>
+          <tr>
+            <td class="cf_action">
+              <div>
+                <%= submit_tag 'Update' %>
+         <% end -%>
+                <% form_for :custom_field, :url => custom_field_path(@page, cf), :html => {:method => :delete} do |f| %>
+                  <%= submit_tag "Delete" %>
+                <% end -%>
+              </div>
+            </td>
+            <td>&nbsp;</td>
+          </tr>
+        <% end -%>
+      </tbody>
+    </table>
+  </div>
+  <div id="add_new_custom_field">
+    <%= render :partial => "admin/custom_fields/new" %>
+  </div>
+</div>

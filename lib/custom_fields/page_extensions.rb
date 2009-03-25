@@ -5,7 +5,6 @@ module CustomFields
       base.class_eval do
         has_many :custom_fields
       end
-    end
-     
+    end  
   end
 end

@@ -1,10 +1,10 @@
 # Uncomment this if you reference any of your controllers in activate
-# require_dependency 'application'
+require_dependency 'application'
 
 class CustomFieldsExtension < Radiant::Extension
-  version "1.0"
-  description "Describe your extension here"
-  url "http://yourwebsite.com/custom_fields"
+  version "0.1"
+  description "An extension that lets you add custom attributes to a radiant page."
+  url "http://blog.aissac.ro/radiant/custom-fields-extension/"
   
   # define_routes do |map|
   #   map.namespace :admin, :member => { :remove => :get } do |admin|
@@ -12,9 +12,17 @@ class CustomFieldsExtension < Radiant::Extension
   #   end
   # end
   
+  define_routes do |map|
+    map.resources :custom_fields, :path_prefix => '/admin/pages/:page_id', :controller  => 'admin/custom_fields'
+  end
+  
   def activate
     Page.send(:include, CustomFields::PageExtensions)
-    # admin.tabs.add "Custom Fields", "/admin/custom_fields", :after => "Layouts", :visibility => [:all]
+    Admin::PagesController.class_eval { include CustomFields::AddAssets }
+    
+    admin.page.edit.add :main, "admin/custom_fields/show_custom_fields", :before => "edit_header"
+    admin.page.edit.add :main, "admin/custom_fields/custom_fields_popup", :before => "edit_buttons"
+    # admin.page.edit.add :main, "admin/custom_fields/index", :before => "edit_buttons"
   end
   
   def deactivate

@@ -1,0 +1,6 @@
+- content_for 'popups' do
+  #custom_fields.popup{:style => 'display:none'}
+    #custom_fields_wrap      
+      %IFRAME{:src => custom_fields_path(model), :style => 'width:880px;height:400px;'}
+    %p
+      = link_to 'Close', "#", :class => 'close'
