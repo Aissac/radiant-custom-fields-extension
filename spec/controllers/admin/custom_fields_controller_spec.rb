@@ -49,6 +49,16 @@ describe Admin::CustomFieldsController do
       do_get
       assigns[:custom_fields].should == @cfs
     end
+    
+    it "includes custom_fields javascripts" do
+      controller.should_receive(:include_javascript).with('admin/custom_fields_iframe')
+      do_get
+    end
+    
+    it "includes custom_fields stylesheets" do
+      controller.should_receive(:include_stylesheet).with('admin/custom_fields')
+      do_get
+    end
   end
   
   describe "handling POST create" do
@@ -56,18 +66,37 @@ describe Admin::CustomFieldsController do
     before do
       @cf = mock_model(CustomField, :save => true)
       CustomField.stub!(:new).and_return(@cf)
+      @cf.stub!(:name=)
     end
     
     def do_post(options={})
       post :create, :page_id => @page.id, :custom_field => options
     end
     
-    # it "redirects on success" do
-    #   do_post(:name => "test_test")
-    #   response.should be_redirect
-    # end
+    it "creates a new custom field from params" do
+      CustomField.should_receive(:new).with("name" => 'test_name')
+      do_post(:name => 'test_name')
+    end
+    
+    it "redirects on success" do
+      do_post
+      response.should be_redirect
+    end
+    
+    it "redirects on failure" do
+      @errors = mock("errors")
+      @cf.stub!(:errors).and_return(@errors)
+      @full_messages = mock("full_messages")
+      @errors.stub!(:full_messages).and_return(@full_messages)
+      @full_messages.stub!(:join)
+      @cf.should_receive(:save).and_return(false)
+      do_post
+      response.should be_redirect
+    end
   end
-  
+
+   
+   
   describe "handling PUT update" do
     
     before do
