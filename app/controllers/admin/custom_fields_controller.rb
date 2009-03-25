@@ -1,12 +1,11 @@
 class Admin::CustomFieldsController < ApplicationController
   
   layout 'custom_fields'
-  before_filter :find_page, :find_all_custon_fields
+  before_filter :find_page
+  before_filter :attach_assets, :find_all_assignable_custom_fields, :only => [:index]
   
   def index
-    include_javascript "admin/custom_fields_iframe"
-    include_stylesheet "admin/custom_fields"  
-    @custom_fields = Page.find(params[:page_id]).custom_fields
+    @custom_fields = @page.custom_fields
   end
   
   def create
@@ -34,13 +33,9 @@ class Admin::CustomFieldsController < ApplicationController
   
   def destroy
     @cf = CustomField.find(params[:id])
-    if @cf.destroy
-      flash[:success] = "The Custom Field was succesfully deleted."
-      redirect_to custom_fields_path(@page)
-    else
-      flash[:error] = @cf.errors.full_messages.join(", ")
-      redirect_to custom_fields_path(@page)
-    end
+    @cf.destroy
+    flash[:success] = "The Custom Field was succesfully deleted."
+    redirect_to custom_fields_path(@page)
   end
   
   private
@@ -48,7 +43,12 @@ class Admin::CustomFieldsController < ApplicationController
       @page = Page.find(params[:page_id])
     end
     
-    def find_all_custon_fields
+    def find_all_assignable_custom_fields
       @cfs = CustomField.find_assignable_cf(params[:page_id])
+    end
+    
+    def attach_assets
+      include_javascript "admin/custom_fields_iframe"
+      include_stylesheet "admin/custom_fields"
     end
 end
