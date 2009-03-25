@@ -18,6 +18,7 @@ class CustomFieldsExtension < Radiant::Extension
   
   def activate
     Page.send(:include, CustomFields::PageExtensions)
+    Page.send(:include, CustomFields::CustomFieldsTags)
     Admin::PagesController.class_eval { include CustomFields::AddAssets }
     
     admin.page.edit.add :main, "admin/custom_fields/show_custom_fields", :before => "edit_header"
