@@ -6,7 +6,7 @@ module CustomFields
 
     tag 'custom_field' do |tag|
       page = tag.locals.page
-      tag.locals.custom_field = page.custom_field(tag.attr["name"]) rescue nil if tag.attr['name']
+      tag.locals.custom_field = page.custom_fields.find_by_name(tag.attr["name"]) rescue nil if tag.attr['name']
       tag.expand
     end
   
@@ -53,18 +53,18 @@ module CustomFields
     
     desc %{
       Renders the containing elements only if the page's custom fields value matches the regular expression 
-      given in @matches@ attribute. The @name@ attribute is required on this tag or the parent tag.
+      given in @pattern@ attribute. The @name@ attribute is required on this tag or the parent tag.
 
       *Usage:*
 
-      <pre><code><r:if_matches matches="regexp" name="custom_field_name">...</r:if_matches></code></pre>
+      <pre><code><r:if_matches pattern="regexp" name="custom_field_name">...</r:if_matches></code></pre>
     }
-    tag 'if_matches' do |tag|
-      raise TagError.new("'matches' attribute required") unless matches = tag.attr['matches']
+    tag 'custom_field:if_matches' do |tag|
+      raise TagError.new("'pattern' attribute required") unless pattern = tag.attr['pattern']
       raise TagError.new("'name' attribute required") unless name = tag.attr['name'] or tag.locals.custom_field
-      regexp = Regexp.new tag.attr['matches']
+      regexp = Regexp.new(pattern)
       cf = tag.locals.custom_field || tag.locals.page.custom_fields.find(:first, :conditions => {:name => name})
-      unless cf.value.match(regexp).nil?
+      if cf.value.match(regexp)
         tag.expand
       end
     end
@@ -72,15 +72,15 @@ module CustomFields
     desc %{
       The opposite of @if_matches@ tag.
       
-      <pre><code><r:unless_matches matches="regexp" name="custom_field_name">...</r:unless_matches></code></pre>
+      <pre><code><r:unless_matches pattern="regexp" name="custom_field_name">...</r:unless_matches></code></pre>
     }
     
-    tag 'unless_matches' do |tag|
-      raise TagError.new("'matches' attribute required") unless matches = tag.attr['matches']
+    tag 'custom_field:unless_matches' do |tag|
+      raise TagError.new("'pattern' attribute required") unless pattern = tag.attr['pattern']
       raise TagError.new("'name' attribute required") unless name = tag.attr['name'] or tag.locals.custom_field
-      regexp = Regexp.new tag.attr['matches']
+      regexp = Regexp.new(pattern)
       cf = tag.locals.custom_field || tag.locals.page.custom_fields.find(:first, :conditions => {:name => name})
-      if cf.value.match(regexp).nil?
+      unless cf.value.match(regexp)
         tag.expand
       end
     end

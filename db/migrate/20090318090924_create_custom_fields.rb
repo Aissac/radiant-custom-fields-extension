@@ -6,6 +6,7 @@ class CreateCustomFields < ActiveRecord::Migration
       t.column    :page_id,       :integer
       t.timestamps
     end
+    add_index :custom_fields, [:name, :page_id]
     add_index :custom_fields, :name
     add_index :custom_fields, :value
   end

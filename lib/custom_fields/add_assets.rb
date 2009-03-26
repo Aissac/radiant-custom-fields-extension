@@ -2,7 +2,7 @@ module CustomFields
   module AddAssets
     def self.included(base)
       base.class_eval do
-        before_filter :add_assets
+        before_filter :add_assets, :only => [:edit]
         
         private        
           def add_assets

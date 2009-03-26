@@ -12,8 +12,8 @@ describe Admin::CustomFieldsController do
   describe "handling GET index" do
 
     before do
-      @cfs = [custom_fields(:first_cf), custom_fields(:second_cf)]
-      @page.stub!(:custom_fields).and_return(@cfs)
+      @custom_fields = [custom_fields(:first_cf), custom_fields(:second_cf)]
+      @page.stub!(:custom_fields).and_return(@custom_fields)
     end
 
     def do_get
@@ -36,18 +36,18 @@ describe Admin::CustomFieldsController do
     end
     
     it "finds the custom_fields assigned to the page" do
-      @page.should_receive(:custom_fields).and_return(@cfs)
+      @page.should_receive(:custom_fields).and_return(@custom_fields)
       do_get
     end
     
     it "finds the custom_fields assignable to the page" do
-      CustomField.should_receive(:find_assignable_cf).with(@page.id.to_s).and_return("third_cf")
+      CustomField.should_receive(:find_assignable_custom_fields).with(@page.id.to_s).and_return("third_cf")
       do_get
     end
     
     it "assigns the found custom_fields to the view" do
       do_get
-      assigns[:custom_fields].should == @cfs
+      assigns[:custom_fields].should == @custom_fields
     end
     
     it "includes custom_fields javascripts" do
@@ -64,9 +64,9 @@ describe Admin::CustomFieldsController do
   describe "handling POST create" do
     
     before do
-      @cf = mock_model(CustomField, :save => true)
-      CustomField.stub!(:new).and_return(@cf)
-      @cf.stub!(:name=)
+      @custom_field = mock_model(CustomField, :save => true)
+      CustomField.stub!(:new).and_return(@custom_field)
+      @custom_field.stub!(:name=)
     end
     
     def do_post(options={})
@@ -84,33 +84,27 @@ describe Admin::CustomFieldsController do
     end
     
     it "redirects on failure" do
-      @errors = mock("errors")
-      @cf.stub!(:errors).and_return(@errors)
-      @full_messages = mock("full_messages")
-      @errors.stub!(:full_messages).and_return(@full_messages)
-      @full_messages.stub!(:join)
-      @cf.should_receive(:save).and_return(false)
+      @errors = mock("errors", :full_messages => mock("full_messages", :join => true))
+      @custom_field.stub!(:errors).and_return(@errors)
+      @custom_field.should_receive(:save).and_return(false)
       do_post
       response.should be_redirect
     end
-  end
-
-   
+  end   
    
   describe "handling PUT update" do
     
     before do
-      @cf = mock_model(CustomField)
-      CustomField.stub!(:find).and_return(@cf)
-      @cf.stub!(:update_attributes).and_return(true)
+      @custom_field = mock_model(CustomField, :update_attributes => true)
+      CustomField.stub!(:find).and_return(@custom_field)
     end
     
     def do_put(options={})
-      put :update, :page_id => @page.id, :id => @cf.id, :custom_field => options
+      put :update, :page_id => @page.id, :id => @custom_field.id, :custom_field => options
     end
     
     it "finds the custom_field" do
-      CustomField.should_receive(:find).with(@cf.id.to_s).and_return(@cf)
+      CustomField.should_receive(:find).with(@custom_field.id.to_s).and_return(@custom_field)
       do_put
     end
     
@@ -120,17 +114,14 @@ describe Admin::CustomFieldsController do
     end
     
     it "edits the custom_field from params" do
-      @cf.should_receive(:update_attributes).with("name" => "test").and_return(true)
+      @custom_field.should_receive(:update_attributes).with("name" => "test").and_return(true)
       do_put(:name => "test")
     end
     
     it "redirects on failure" do
-      @errors = mock("errors")
-      @cf.stub!(:errors).and_return(@errors)
-      @full_messages = mock("full_messages")
-      @errors.stub!(:full_messages).and_return(@full_messages)
-      @full_messages.stub!(:join)
-      @cf.should_receive(:update_attributes).and_return(false)
+      @errors = mock("errors", :full_messages => mock("full_messages", :join => true))
+      @custom_field.stub!(:errors).and_return(@errors)
+      @custom_field.should_receive(:update_attributes).and_return(false)
       do_put
       response.should be_redirect
     end
@@ -139,13 +130,13 @@ describe Admin::CustomFieldsController do
   describe "handling DELETE destroy" do
     
     before do
-      @cf = mock_model(CustomField)
-      CustomField.stub!(:find).and_return(@cf)
-      @cf.stub!(:destroy)
+      @custom_field = mock_model(CustomField)
+      CustomField.stub!(:find).and_return(@custom_field)
+      @custom_field.stub!(:destroy)
     end
     
     def do_delete
-      delete :destroy, :page_id => @page.id, :id => @cf.id
+      delete :destroy, :page_id => @page.id, :id => @custom_field.id
     end
     
     it "redirects on success" do
@@ -154,12 +145,12 @@ describe Admin::CustomFieldsController do
     end
     
     it "finds the coresponding custom_field" do
-      CustomField.should_receive(:find).with(@cf.id.to_s).and_return(@cf)
+      CustomField.should_receive(:find).with(@custom_field.id.to_s).and_return(@custom_field)
       do_delete
     end
     
     it "deletes the selected custom_field" do
-      @cf.should_receive(:destroy)
+      @custom_field.should_receive(:destroy)
       do_delete
     end
   end

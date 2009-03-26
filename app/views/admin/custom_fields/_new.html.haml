@@ -12,11 +12,11 @@
           %select#select_name.select_name{:name => 'select_name'}
             %option{:value => ''}
               \- select -
-            - for cf in @cfs
+            - for cf in @assignable_custom_fields
               %option{:value => cf}
                 = cf
           = link_to 'Enter new', '#', {:id => 'enter_new_custom_field', :class => 'add_new_links'}
-          = link_to 'Cancel', '#', {:id => 'cancel_enter_new_custom_field', :class => 'add_new_links', :style => 'display:none'}
+          = link_to 'Select existing', '#', {:id => 'cancel_enter_new_custom_field', :class => 'add_new_links', :style => 'display:none'}
         %td.cf_value  
           = f.text_area :value, :cols => 40, :rows => 2
       %tr
