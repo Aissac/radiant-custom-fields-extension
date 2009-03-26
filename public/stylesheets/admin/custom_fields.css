@@ -1,1 +1,31 @@
-#show_custom_fields     {float:right;}
+.clearfix:after                       {content:".";display:block;height:0;clear:both;visibility:hidden;}
+.clearfix                             {display:inline-block;}
+.clearfix                             {display:block;}
+#show_custom_fields                   {float:right;}
+#show_custom_fields a                 {display: block;text-decoration:none;color:black;border:1px solid rgb(0, 92, 157);
+                                       line-height:20px;width:120px;cursor:pointer;margin:0 5px;padding:5px 10px;
+                                       font-size:80%;font-style:italic;background:white;}
+#custom_fields                        {position:absolute;top:100px;left:200px;}
+#custom_fields_wrap                   {height:420px;width:900px;overflow:auto;margin-left:-15px;margin-right:-15px;padding: 3px;background-color:#FFF;}
+#custom_fields iframe                 {border:none;}
+
+#cf h3                                {margin:0;padding:0;}
+table.cf_forms                        {width:90%;background-color:#F9F9F9;border:1px solid #DFDFDF;margin:10px 0 10px 5%;}
+table.cf_forms thead                  {background-color:#F1F1F1;}
+table.cf_forms thead th               {padding:3px 10px;}
+table.cf_forms tbody td.cf_name       {width:30%;}
+table.cf_forms tbody td.cf_value      {width:70%;}
+table.cf_forms tbody td.cf_value, table.cf_forms tbody td.cf_name
+                                      {padding:10px 20px 5px 20px;vertical-align:top;}
+table.cf_forms td.cf_action           {padding:3px 20px;}
+table.cf_forms td.cf_value input, table.cf_forms td.cf_name input, table.cf_forms td.cf_value textarea, table.cf_forms td.cf_name select
+                                      {width:100%;}
+table.cf_forms div input, table.cf_forms div form 
+                                      {float:left;margin:0 10px 0 0;}
+a.add_new_links                       {color:#21759B;text-decoration:none;font-size:13px;margin-top:5px;}
+#and_new_custom_field_link            {float:right;color:#000;margin-right:70px;padding-left:15px;
+                                       background:transparent url(/images/admin/plus.png) no-repeat left center;}
+.flash                                {padding:5px 0 5px 25px;margin:0 50px 10px 50px;font:#003300;border:2px solid #CCC;}
+.success                              {background:#FFF url(/images/admin/accept.png) no-repeat 5px 50%;}
+.error                                {background:#FFF url(/images/admin/exclamation.png) no-repeat 5px 50%;}
+.notice                               {background:#FFF url(/images/admin/warning.png) no-repeat 5px 50%;}

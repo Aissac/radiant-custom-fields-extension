@@ -1,0 +1,25 @@
+- form_for :custom_field, :url => custom_fields_path(@page) do |f|
+  %table.cf_forms
+    %thead
+      %tr
+        %th Name
+        %th Value
+    %tbody
+      %tr
+        %td.cf_name
+          = f.hidden_field :page_id, :value => params[:page_id]
+          = f.text_field :name, :class => 'tb_name', :style => 'display:none'
+          %select#select_name.select_name{:name => 'select_name'}
+            %option{:value => ''}
+              \- select -
+            - for cf in @cfs
+              %option{:value => cf}
+                = cf
+          = link_to 'Enter new', '#', {:id => 'enter_new_custom_field', :class => 'add_new_links'}
+          = link_to 'Cancel', '#', {:id => 'cancel_enter_new_custom_field', :class => 'add_new_links', :style => 'display:none'}
+        %td.cf_value  
+          = f.text_area :value, :cols => 40, :rows => 2
+      %tr
+        %td.cf_action
+          = submit_tag 'Add Custom Field'
+          = link_to 'Cancel', '#', {:id => 'cancel_new_custom_field', :class => 'add_new_links' }

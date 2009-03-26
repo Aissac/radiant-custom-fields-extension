@@ -1,7 +1,13 @@
 <%= show_flash_message %>
 <div id="cf">
+  <h3>Custom fields:</h3>
+  <div id="add_new_custom_field" class="clearfix">
+    <a id="and_new_custom_field_link" href="#">Add New Custom Field</a>
+    <div id="add_new_custom_field_div" style="display:none">
+      <%= render :partial => "admin/custom_fields/new" %>
+    </div>
+  </div>
   <div id="index_custom_fields">
-    <h4>Custom fields:<h4>
     <table class="cf_forms">
       <thead>
         <tr>
@@ -11,7 +17,8 @@
       </thead>
       <tbody>
         <% @custom_fields.each do |cf| %>
-          <% form_for :custom_field, :url => custom_field_path(@page, cf), :html => {:method => :put} do |f| %>
+        
+        <% form_for :custom_field, :url => custom_field_path(@page, cf), :html => {:method => :put} do |f| %>
           <%= f.hidden_field :page_id, :value => params[:page_id] %>
           <tr>
             <td class="cf_name">
@@ -25,10 +32,8 @@
             <td class="cf_action">
               <div>
                 <%= submit_tag 'Update' %>
-         <% end -%>
-                <% form_for :custom_field, :url => custom_field_path(@page, cf), :html => {:method => :delete} do |f| %>
-                  <%= submit_tag "Delete" %>
-                <% end -%>
+        <% end -%>
+                <%= button_to "Delete", custom_field_path(@page, cf), :method => :delete %>
               </div>
             </td>
             <td>&nbsp;</td>
@@ -36,8 +41,5 @@
         <% end -%>
       </tbody>
     </table>
-  </div>
-  <div id="add_new_custom_field">
-    <%= render :partial => "admin/custom_fields/new" %>
   </div>
 </div>
