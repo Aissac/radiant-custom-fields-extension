@@ -3,7 +3,7 @@ require_dependency 'application'
 
 class CustomFieldsExtension < Radiant::Extension
   version "0.1"
-  description "An extension that lets you add custom attributes to a radiant page."
+  description "An extension that lets you add custom fields to a Radiant page."
   url "http://blog.aissac.ro/radiant/custom-fields-extension/"
   
   define_routes do |map|

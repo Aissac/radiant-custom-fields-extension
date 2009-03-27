@@ -4,33 +4,34 @@ Radiant Custom Fields Extension
 About
 ---
 
-An extension by [Aissac][ai] that allows you to save attributes (custom fields) to [Radiant CMS][rd] pages.
+An extension by [Aissac][ai] that allows you to add custom fields to [Radiant CMS][rd] pages.
 
-The Custom Fields Extension is Radiant 0.7.1 compatible.
+The Custom Fields Extension requires Radiant 0.7.1.
 
 Features
 ---
 
-* Provides the ability to assign attributes to a Radiant page;
-* Interface for managing assigned attributes;
-* Radius tags for integrating custom_fields functionality into the site;
+* Provides the ability to add custom fields to a Page;
+* The Page model is not changed: custom\_fields are added as a belongs\_to association;
+* Admin interface for managing assigned custom fields;
+* Radius tags for accessing custom fields.
 
 Installation
 ---
 
 The [Custom Fields Extension][cfe] has no dependencies, so all you have to do is install it:
   
-  git submodule add ..... GH repository ....
+  	git submodule add git://github.com/Aissac/radiant-custom-fields-extension.git vendor/extensions/custom_fields
 
 Then run the migration and the update:
   
-  rake radiant:extensions:custom_fields:migrate
-  rake radiant:extensions:custom_fields:update
+  	rake radiant:extensions:custom_fields:migrate
+  	rake radiant:extensions:custom_fields:update
 
 Usage
 ---
 
-#Available Tags
+###Available Tags
 
 * See the "available tags" documentation built into the Radiant page admin for more details.
 * Use the `<r:custom_field:value />` tag to render the value of a custom field.
@@ -40,10 +41,15 @@ Usage
 Contributors
 ---
 
+* Cristi Duma
+* Istan Hoka
+
 TODO
 ---
+* default (fallback) atribute for missing fields;
+* AJAX-ify admin interface.
 
 
 [ai]: http://www.aissac.ro/
 [rd]: http://radiantcms.org/
-[cfe]: http://github.com/
+[cfe]: http://github.com/Aissac/radiant-custom-fields-extension/
