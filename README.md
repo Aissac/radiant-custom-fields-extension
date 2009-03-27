@@ -4,15 +4,15 @@ Radiant Custom Fields Extension
 About
 ---
 
-An extension by [Aissac][ai] that allows you to save custom attributes to [Radiant CMS][rd] pages.
+An extension by [Aissac][ai] that allows you to save attributes (custom fields) to [Radiant CMS][rd] pages.
 
 The Custom Fields Extension is Radiant 0.7.1 compatible.
 
 Features
 ---
 
-* Provides the ability to assign custom attributes to a Radiant page;
-* Interface for managing assigned custom fields;
+* Provides the ability to assign attributes to a Radiant page;
+* Interface for managing assigned attributes;
 * Radius tags for integrating custom_fields functionality into the site;
 
 Installation
@@ -20,7 +20,7 @@ Installation
 
 The [Custom Fields Extension][cfe] has no dependencies, so all you have to do is install it:
   
-  git submodule add ..... repository ....
+  git submodule add ..... GH repository ....
 
 Then run the migration and the update:
   

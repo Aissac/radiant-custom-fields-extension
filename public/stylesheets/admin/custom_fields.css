@@ -8,9 +8,8 @@
 #custom_fields                        {position:absolute;top:100px;left:200px;}
 #custom_fields_wrap                   {height:420px;width:900px;overflow:auto;margin-left:-15px;margin-right:-15px;padding: 3px;background-color:#FFF;}
 #custom_fields iframe                 {border:none;}
-
 #cf h3                                {margin:0;padding:0;}
-table.cf_forms                        {width:90%;background-color:#F9F9F9;border:1px solid #DFDFDF;margin:10px 0 10px 5%;}
+table.cf_forms                        {width:90%;background-color:#F9F9F9;border:1px solid #DFDFDF;margin:10px 0 0 5%;}
 table.cf_forms thead                  {background-color:#F1F1F1;}
 table.cf_forms thead th               {padding:3px 10px;}
 table.cf_forms tbody td.cf_name       {width:30%;}
@@ -20,7 +19,7 @@ table.cf_forms tbody td.cf_value, table.cf_forms tbody td.cf_name
 table.cf_forms td.cf_action           {padding:3px 20px;}
 table.cf_forms td.cf_value input, table.cf_forms td.cf_name input, table.cf_forms td.cf_value textarea, table.cf_forms td.cf_name select
                                       {width:100%;}
-table.cf_forms div input, table.cf_forms div form 
+table.cf_forms td.cf_action input, table.cf_forms td.cf_action form 
                                       {float:left;margin:0 10px 0 0;}
 a.add_new_links                       {color:#21759B;text-decoration:none;font-size:13px;margin-top:5px;}
 #and_new_custom_field_link            {float:right;color:#000;margin-right:70px;padding-left:15px;
