@@ -4,9 +4,9 @@ module CustomFields
     include Radiant::Taggable
     class TagError < StandardError; end
 
-    tag 'custom_field' do |tag|
+    tag 'custom_fields' do |tag|
       page = tag.locals.page
-      tag.locals.custom_field = page.custom_fields.find_by_name(tag.attr["name"]) rescue nil if tag.attr['name']
+      tag.locals.custom_fields = page.custom_fields.find_by_name(tag.attr["name"]) rescue nil if tag.attr['name']
       tag.expand
     end
   
@@ -22,7 +22,7 @@ module CustomFields
         </r:custom_field:each>
       </code></pre>
     }
-    tag 'custom_field:each' do |tag|
+    tag 'custom_fields:each' do |tag|
       page = tag.locals.page
       output = []
       order = tag.attr["order"] || "ASC"
@@ -30,7 +30,7 @@ module CustomFields
       limit = tag.attr["limit"] || nil
       offset = tag.attr["offset"] || nil
       page.custom_fields.find(:all, :order =>  [by, order].join(" "), :limit => limit, :offset => offset).each do |cf|
-        tag.locals.custom_field = cf
+        tag.locals.custom_fields = cf
         output << tag.expand
       end
       output
@@ -43,10 +43,10 @@ module CustomFields
 
       <pre><code><r:custom_field:value name="custom_field_name" /></code></pre>
     }
-    tag 'custom_field:value' do |tag|
-      raise TagError, "'name' attribute required" unless name = tag.attr['name'] or tag.locals.custom_field
+    tag 'custom_fields:value' do |tag|
+      raise TagError, "'name' attribute required" unless name = tag.attr['name'] or tag.locals.custom_fields
       page = tag.locals.page
-      cf = tag.locals.custom_field || page.custom_fields.find(:first, :conditions => {:name => name})
+      cf = tag.locals.custom_fields || page.custom_fields.find(:first, :conditions => {:name => name})
       cf.value
     end
     
@@ -59,11 +59,11 @@ module CustomFields
 
       <pre><code><r:if_matches pattern="regexp" name="custom_field_name">...</r:if_matches></code></pre>
     }
-    tag 'custom_field:if_matches' do |tag|
+    tag 'custom_fields:if_matches' do |tag|
       raise TagError.new("'pattern' attribute required") unless pattern = tag.attr['pattern']
-      raise TagError.new("'name' attribute required") unless name = tag.attr['name'] or tag.locals.custom_field
+      raise TagError.new("'name' attribute required") unless name = tag.attr['name'] or tag.locals.custom_fields
       regexp = Regexp.new(pattern)
-      cf = tag.locals.custom_field || tag.locals.page.custom_fields.find(:first, :conditions => {:name => name})
+      cf = tag.locals.custom_fields || tag.locals.page.custom_fields.find(:first, :conditions => {:name => name})
       if cf.value.match(regexp)
         tag.expand
       end
@@ -75,11 +75,11 @@ module CustomFields
       <pre><code><r:unless_matches pattern="regexp" name="custom_field_name">...</r:unless_matches></code></pre>
     }
     
-    tag 'custom_field:unless_matches' do |tag|
+    tag 'custom_fields:unless_matches' do |tag|
       raise TagError.new("'pattern' attribute required") unless pattern = tag.attr['pattern']
-      raise TagError.new("'name' attribute required") unless name = tag.attr['name'] or tag.locals.custom_field
+      raise TagError.new("'name' attribute required") unless name = tag.attr['name'] or tag.locals.custom_fields
       regexp = Regexp.new(pattern)
-      cf = tag.locals.custom_field || tag.locals.page.custom_fields.find(:first, :conditions => {:name => name})
+      cf = tag.locals.custom_fields || tag.locals.page.custom_fields.find(:first, :conditions => {:name => name})
       unless cf.value.match(regexp)
         tag.expand
       end

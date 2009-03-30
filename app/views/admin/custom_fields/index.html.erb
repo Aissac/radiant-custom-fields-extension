@@ -31,7 +31,7 @@
               <td class="cf_action">
                 <%= submit_tag 'Update' %>
               <% end -%>
-                <%= button_to "Delete", custom_field_path(@page, cf), :method => :delete %>
+                <%= button_to "Delete", custom_field_path(@page, cf), :method => :delete, :confirm => "Are you sure you want to delete '#{cf.name}' custom field?" %>
             </td>
             <td>&nbsp;</td>
           </tr>
