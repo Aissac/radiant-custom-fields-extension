@@ -38,16 +38,21 @@ module CustomFields
     
     desc %{
       Renders the value of the custom_field. The @name@ attribute is required on this tag or the parent tag.
-
+      You can use the @default_value@ attribute to render a default value in case the custom field is unknown.
       *Usage*:
 
-      <pre><code><r:custom_field:value name="custom_field_name" /></code></pre>
+      <pre><code><r:custom_field:value name="custom_field_name" [default_value="some_value"] /></code></pre>
     }
     tag 'custom_fields:value' do |tag|
       raise TagError, "'name' attribute required" unless name = tag.attr['name'] or tag.locals.custom_fields
       page = tag.locals.page
+      default_value = tag.attr["default_value"] || ""
       cf = tag.locals.custom_fields || page.custom_fields.find(:first, :conditions => {:name => name})
-      cf.value
+      if cf
+        cf.value
+      else
+        default_value.blank? ? "Unknown custom field '#{name}'." : default_value
+      end
     end
     
     
