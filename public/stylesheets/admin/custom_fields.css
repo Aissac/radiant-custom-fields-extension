@@ -21,7 +21,7 @@ table.cf_forms td.cf_value input, table.cf_forms td.cf_name input, table.cf_form
                                       {width:100%;}
 table.cf_forms td.cf_action input, table.cf_forms td.cf_action form 
                                       {float:left;margin:0 10px 0 0;}
-a.add_new_links                       {color:#21759B;text-decoration:none;font-size:13px;margin-top:5px;}
+a.cf_links                            {color:#21759B;text-decoration:none;font-size:13px;}
 #and_new_custom_field_link            {float:right;color:#000;margin-right:70px;padding-left:15px;
                                        background:transparent url(/images/admin/plus.png) no-repeat left center;}
 .flash                                {padding:5px 0 5px 25px;margin:0 50px 10px 50px;font:#003300;border:2px solid #CCC;}
