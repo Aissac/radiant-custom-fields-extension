@@ -6,7 +6,7 @@ About
 
 An extension by [Aissac][ai] that allows you to add custom fields to [Radiant CMS][rd] pages.
 
-The Custom Fields Extension requires Radiant 0.7.1.
+Test on Radiant 0.7.1 and 0.8.
 
 Features
 ---
@@ -27,6 +27,13 @@ Then run the migration and the update:
   
   	rake radiant:extensions:custom_fields:migrate
   	rake radiant:extensions:custom_fields:update
+
+###Note
+
+To get the Radiant 0.7.1 version tag you need to:
+
+    cd vendor/extensions/custom_fields/
+    git checkout v0.7
 
 Usage
 ---
