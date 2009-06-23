@@ -14,7 +14,7 @@ Given /^I enter in "([^\"]*)" field "([^\"]*)"$/ do |field, value|
   browser.text_field(:id, field).set(value)
 end
  
-Given /^I select the "([^\"]*)" option from "([^\"]*)"/ do |value, ddl|
+Given /^I select the "([^\"]*)" option from "([^\"]*)"$/ do |value, ddl|
   browser.select_list(:id, ddl).select(value)
 end
  
