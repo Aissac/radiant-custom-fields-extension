@@ -1,4 +1,4 @@
-Given /^I navigate to the "([^\"]*)" page$/ do |page_name|
+Given /^I navigate to "([^\"]*)"$/ do |page_name|
   browser.goto("http://localhost:3001#{path_to(page_name)}")
 end
 
