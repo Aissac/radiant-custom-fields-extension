@@ -14,11 +14,11 @@ Given /^I enter in "([^\"]*)" field "([^\"]*)"$/ do |field, value|
   browser.text_field(:id, field).set(value)
 end
 
-When /^I enter in "([^\"]*)" field "([^\"]*)" in the popup$/ do |field, value|
+When /^I enter in "([^\"]*)" field "([^\"]*)" in the iframe$/ do |field, value|
   cf_frame.text_field(:id, field).set(value)
 end
 
-When /^I enter in "([^\"]*)" value "([^\"]*)" in the popup$/ do |field_value, value|
+When /^I enter in "([^\"]*)" value "([^\"]*)" in the iframe$/ do |field_value, value|
   cf_frame.text_field(:value, field_value).set(value)
 end
 
@@ -26,7 +26,7 @@ Given /^I select the "([^\"]*)" option from "([^\"]*)"$/ do |value, ddl|
   browser.select_list(:id, ddl).select(value)
 end
 
-Given /^I select the "([^\"]*)" option from "([^\"]*)" in the popup$/ do |value, ddl|
+Given /^I select the "([^\"]*)" option from "([^\"]*)" in the iframe$/ do |value, ddl|
   cf_frame.select_list(:id, ddl).select(value)
 end
  
@@ -35,7 +35,7 @@ Given /^I click the "([^\"]*)" button$/ do |but|
   sleep 1
 end
 
-When /^I click the "([^\"]*)" button in the popup$/ do |button|
+When /^I click the "([^\"]*)" button in the iframe$/ do |button|
   cf_frame.button(:value, button).click
   sleep 1
 end
@@ -46,17 +46,17 @@ Given /^I click the "([^\"]*)" link$/ do |lnk|
   sleep 1
 end
 
-Given /^I click the "([^\"]*)" link in the popup$/ do |lnk|
+Given /^I click the "([^\"]*)" link in the iframe$/ do |lnk|
     link = cf_frame.link(:text, lnk)
     link.click
     sleep 1
 end
 
-When /^I click the Delete link in the popup and confirm the dialog$/ do
+When /^I click the Delete link in the iframe and confirm the dialog$/ do
   link = cf_frame.link(:text, "Delete")
   link.click
   
-  browser.startClicker('OK', 1, '', "Are you sure you want to delete 'first_cf' custom field?")
+  browser.startClicker('OK', 1, '', "Are you sure you want to delete 'a_cf_on_first_page' custom field?")
 end
  
 Given /^I click the link with id "([^\"]*)"$/ do |lnk|
@@ -68,7 +68,7 @@ Then /^I must see "([^\"]*)"$/ do |text|
   browser.text.gsub(/\n/, ' ').gsub(/\s+/, ' ').should include(text)
 end
 
-Then /^I must see "([^\"]*)" in the popup$/ do |text|
+Then /^I must see "([^\"]*)" in the iframe$/ do |text|
   cf_frame.text.gsub(/\n/, ' ').gsub(/\s+/, ' ').should include(text)
 end
  
