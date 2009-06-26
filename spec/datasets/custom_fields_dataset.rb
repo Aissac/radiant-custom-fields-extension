@@ -1,8 +1,13 @@
 class CustomFieldsDataset < Dataset::Base
   uses :pages
   def load
-    create_record :custom_field, :first_cf, {:name => 'first_cf', :value => 'first_cf_value', :page_id => pages(:first).id}
-    create_record :custom_field, :second_cf,{:name => 'second_cf',:value => 'second_cf_value',:page_id => pages(:first).id}
-    create_record :custom_field, :third_cf, {:name => 'third_cf', :value => 'third_cf_value', :page_id => pages(:another).id}
+    create_record :custom_field, :a_cf_on_first_page, 
+      {:name => 'a_cf_on_first_page', :value => 'a_cf_on_first_page_value', :page_id => pages(:first).id}
+      
+    create_record :custom_field, :another_cf_on_first_page,
+      {:name => 'another_cf_on_first_page',:value => 'another_cf_on_first_page_value',:page_id => pages(:first).id}
+      
+    create_record :custom_field, :a_cf_on_another_page, 
+      {:name => 'a_cf_on_another_page', :value => 'a_cf_on_another_page_value', :page_id => pages(:another).id}
   end
 end

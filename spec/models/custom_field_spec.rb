@@ -19,9 +19,9 @@ describe CustomField do
       end
     end
     
-    it "requires 'name' attribute to be unique withi 'page_id' scope" do
+    it "requires 'name' attribute to be unique within 'page_id' scope" do
       lambda do
-        create_custom_field(:name => 'first_cf', :page_id => pages(:first).id)
+        create_custom_field(:name => 'a_cf_on_first_page', :page_id => pages(:first).id)
         @custom_field.errors.on(:name).should_not be_nil
       end.should_not change(CustomField, :count)
     end
@@ -30,7 +30,7 @@ describe CustomField do
   describe "methods" do
     
     it "find the assignable custom fields" do
-      CustomField.find_assignable_custom_fields(pages(:first).id).should == ["third_cf"]
+      CustomField.find_assignable_custom_fields(pages(:first).id).should == ["a_cf_on_another_page"]
     end
     
   end

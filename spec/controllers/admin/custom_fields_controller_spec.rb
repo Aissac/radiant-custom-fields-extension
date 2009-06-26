@@ -12,7 +12,7 @@ describe Admin::CustomFieldsController do
   describe "handling GET index" do
 
     before do
-      @custom_fields = [custom_fields(:first_cf), custom_fields(:second_cf)]
+      @custom_fields = [custom_fields(:a_cf_on_first_page), custom_fields(:another_cf_on_first_page)]
       @page.stub!(:custom_fields).and_return(@custom_fields)
     end
 
