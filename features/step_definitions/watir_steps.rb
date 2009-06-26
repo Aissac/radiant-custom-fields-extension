@@ -47,9 +47,16 @@ Given /^I click the "([^\"]*)" link$/ do |lnk|
 end
 
 Given /^I click the "([^\"]*)" link in the popup$/ do |lnk|
-  link = cf_frame.link(:text, lnk)
+    link = cf_frame.link(:text, lnk)
+    link.click
+    sleep 1
+end
+
+When /^I click the Delete link in the popup and confirm the dialog$/ do
+  link = cf_frame.link(:text, "Delete")
   link.click
-  sleep 1
+  
+  browser.startClicker('OK', 1, '', "Are you sure you want to delete 'first_cf' custom field?")
 end
  
 Given /^I click the link with id "([^\"]*)"$/ do |lnk|
@@ -67,4 +74,8 @@ end
  
 Then /^I must not see "([^\"]*)"$/ do |text|
   browser.text.gsub(/\n/, ' ').gsub(/\s+/, ' ').should_not include(text)
+end
+
+When /^I confirm the deletion$/ do
+  browser.startClicker("ok", 1, '', "Are you sure you want to delete 'to delete custom field' custom field?")
 end
