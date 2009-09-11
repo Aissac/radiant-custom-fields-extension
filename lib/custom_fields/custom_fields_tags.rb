@@ -17,9 +17,9 @@ module CustomFields
       *Usage*:
 
       <pre><code>
-        <r:custom_field:each [order="asc|desc"] [by="name|value|created_at..."] [limit=0] [offset=0]>
+        <r:custom_fields:each [order="asc|desc"] [by="name|value|created_at..."] [limit=0] [offset=0]>
           <r:value />
-        </r:custom_field:each>
+        </r:custom_fields:each>
       </code></pre>
     }
     tag 'custom_fields:each' do |tag|
@@ -41,7 +41,7 @@ module CustomFields
       You can use the @default_value@ attribute to render a default value in case the custom field is unknown.
       *Usage*:
 
-      <pre><code><r:custom_field:value name="custom_field_name" [default_value="some_value"] /></code></pre>
+      <pre><code><r:custom_fields:value name="custom_field_name" [default_value="some_value"] /></code></pre>
     }
     tag 'custom_fields:value' do |tag|
       raise TagError, "'name' attribute required" unless name = tag.attr['name'] or tag.locals.custom_fields
