@@ -6,7 +6,7 @@ About
 
 An extension by [Aissac][ai] that allows you to add custom fields to [Radiant CMS][rd] pages.
 
-The Custom Fields Extension requires Radiant 0.7.1.
+Tested on Radiant 0.7.1.
 
 Features
 ---
