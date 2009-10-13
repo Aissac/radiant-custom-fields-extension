@@ -1,0 +1,75 @@
+.clearfix:after
+  :content "."
+  :display block
+  :height 0
+  :clear both
+  :visibility hidden
+.clearfix
+  :display inline-block
+.clearfix
+  :display block
+
+#custom_fields_wrap                   
+  :width 856px
+  :overflow auto
+  :background-color #FFF
+  
+#custom_fields iframe
+  :border none
+
+table.cf_forms                        
+  :width 90%
+  :background-color #F9F9F9
+  :border 1px solid #DFDFDF
+  :margin 10px 0 0 5%
+
+  thead                  
+    :background-color #F1F1F1
+    
+    th
+      :padding 3px 10px
+      
+  tbody 
+    td
+      :padding 10px 20px 5px 20px
+      :vertical-align top
+    td.cf_name
+      :width 30%
+      input, select, textarea
+        :width 100%
+    td.cf_value
+      :width 70%
+      input, select, textarea
+        :width 100%
+
+  td.cf_action
+    :padding 3px 20px
+    form
+      :float left
+      :margin 0 10px 0 0
+
+textarea
+  :border 1px inset threedface
+
+a.cf_links
+  :color #0066CC
+  :text-decoration none
+  :font-size 13px
+
+#add_new_custom_field_link
+  :float right
+  :color #000
+  :margin-right 70px
+  :padding-left 15px
+  :background transparent url(/images/admin/plus.png) no-repeat left center
+.flash
+  :padding 5px 0 5px 25px
+  :margin 0 50px 10px 50px
+  :font #003300
+  :border 2px solid #CCC
+  &.success
+    :background #FFF url(/images/admin/accept.png) no-repeat 5px 50%
+  &.error
+    :background #FFF url(/images/admin/exclamation.png) no-repeat 5px 50%
+  &.notice
+    :backgroun :#FFF url(/images/admin/warning.png) no-repeat 5px 50%

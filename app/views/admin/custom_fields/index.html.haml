@@ -1,8 +1,7 @@
 = show_flash_message
 #cf
-  %h3 Custom fields:
   #add_new_custom_field.clearfix
-    %a#and_new_custom_field_link{:href => '#'} Add new custom field
+    %a#add_new_custom_field_link{:href => '#'} Add new custom field
     #add_new_custom_field_div{:style => 'display:none;'}
       = render :partial => 'admin/custom_fields/new'
   #index_custom_fields

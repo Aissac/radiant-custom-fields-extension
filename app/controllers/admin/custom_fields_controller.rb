@@ -1,5 +1,4 @@
 class Admin::CustomFieldsController < ApplicationController
-  
   layout 'custom_fields'
   before_filter :find_page
   before_filter :attach_assets, :find_all_assignable_custom_fields, :only => [:index]
@@ -48,7 +47,8 @@ class Admin::CustomFieldsController < ApplicationController
     end
     
     def attach_assets
-      include_javascript "admin/custom_fields_iframe"
+      include_javascript "admin/prototype"
+      include_javascript "admin/custom_fields"
       include_stylesheet "admin/custom_fields"
     end
 end

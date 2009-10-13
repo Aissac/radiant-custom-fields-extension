@@ -1,2 +1,2 @@
-#show_custom_fields
-  = link_to 'Show Custom Fields', '#', {:id => 'show_custom_fields_link'} unless model.new_record?
+#show_custom_fields{ :style => "float:right;"}
+  %a.popup{ :href => "#custom_fields", :style => "display:block;text-decoration:none;color:black;border:1px solid rgb(0, 92, 157);line-height:20px;width:120px;cursor:pointer;margin:-13px 5px 0 5px;padding:5px 10px;font-size:80%;font-style:italic;background:white;" } Show Custom Fields

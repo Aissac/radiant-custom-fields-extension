@@ -1,6 +1,8 @@
 - content_for 'popups' do
   #custom_fields.popup{:style => 'display:none'}
+    #custom_fields_busy.busy{:style => "display: none"}= image('spinner.gif', :alt => "")
+    %h3.title Custom Fields
     #custom_fields_wrap      
-      %IFRAME{:src => custom_fields_path(model),:id => "CFframe", :style => 'width:880px;height:400px;'}
-    %p
-      = link_to 'Close', "#", :class => 'close'
+      %IFRAME{:src => custom_fields_path(model),:id => "CFframe", :style => 'width:856px;height:400px;'}
+    %p.close_link=link_to_function "Close", "$(this).closePopup();"
+      
