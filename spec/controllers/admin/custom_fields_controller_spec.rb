@@ -4,7 +4,7 @@ describe Admin::CustomFieldsController do
   dataset :users, :pages, :custom_fields
 
   before do
-    login_as :developer
+    login_as :designer
     @page = pages(:first)
     Page.stub!(:find).and_return(@page)
   end
@@ -51,7 +51,8 @@ describe Admin::CustomFieldsController do
     end
     
     it "includes custom_fields javascripts" do
-      controller.should_receive(:include_javascript).with('admin/custom_fields_iframe')
+      controller.should_receive(:include_javascript).with('admin/prototype')
+      controller.should_receive(:include_javascript).with('admin/custom_fields')
       do_get
     end
     
