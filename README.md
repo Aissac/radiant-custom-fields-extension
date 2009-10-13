@@ -46,7 +46,6 @@ Contributors
 
 TODO
 ---
-* default (fallback) atribute for missing fields;
 * AJAX-ify admin interface.
 
 
