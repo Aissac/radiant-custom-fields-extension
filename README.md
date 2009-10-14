@@ -41,8 +41,8 @@ Usage
 Contributors
 ---
 
-* Cristi Duma
-* Istan Hoka
+* Cristi Duma ([@cristi_duma][cd])
+* Istvan Hoka ([@ihoka][ih])
 
 TODO
 ---
@@ -52,3 +52,5 @@ TODO
 [ai]: http://www.aissac.ro/
 [rd]: http://radiantcms.org/
 [cfe]: http://github.com/Aissac/radiant-custom-fields-extension/
+[cd]: http://twitter.com/cristi_duma
+[ih]: http://twitter.com/ihoka
