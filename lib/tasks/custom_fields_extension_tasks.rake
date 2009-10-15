@@ -19,8 +19,8 @@ namespace :radiant do
         Dir[CustomFieldsExtension.root + "/public/**/*"].reject(&is_svn_or_dir).each do |file|
           path = file.sub(CustomFieldsExtension.root, '')
           directory = File.dirname(path)
-          mkdir_p RAILS_ROOT + directory
-          cp file, RAILS_ROOT + path
+          mkdir_p RAILS_ROOT + directory, :verbose => false
+          cp file, RAILS_ROOT + path, :verbose => false
         end
       end  
     end

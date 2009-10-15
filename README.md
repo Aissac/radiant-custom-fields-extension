@@ -21,12 +21,20 @@ Installation
 
 The [Custom Fields Extension][cfe] has no dependencies, so all you have to do is install it:
   
-  	git submodule add git://github.com/Aissac/radiant-custom-fields-extension.git vendor/extensions/custom_fields
+  	git clone git://github.com/Aissac/radiant-custom-fields-extension.git vendor/extensions/custom_fields
 
 Then run the migration and the update:
   
   	rake radiant:extensions:custom_fields:migrate
   	rake radiant:extensions:custom_fields:update
+
+###Note
+
+The git branches hold stable versions of the extension for older version of Radiant CMS. To checkout one of these branches:
+
+    git clone git://github.com/Aissac/radiant-custom-fields-extension.git vendor/extensions/custom_fields
+    cd vendor/extensions/custom_fields
+    git checkout -b <branch-name> origin/<remote-branch-name>
 
 Usage
 ---

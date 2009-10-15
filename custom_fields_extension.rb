@@ -19,7 +19,5 @@ class CustomFieldsExtension < Radiant::Extension
   end
   
   def deactivate
-    # admin.tabs.remove "Custom Fields"
-  end
-  
+  end  
 end
