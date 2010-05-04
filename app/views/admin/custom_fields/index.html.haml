@@ -14,7 +14,7 @@
         - @custom_fields.each do |cf|
           - form_for :custom_field, :url => custom_field_path(@page, cf), :html => {:method => :put} do |f|
             = f.hidden_field :page_id, :value => params[:page_id]
-            %tr
+            %tr{:id => dom_id(cf)}
               %td.cf_name= f.text_field :name, :value => cf.name
               %td.cf_value= f.text_area :value, :value => cf.value, :cols => 50, :rows => 2
             %tr

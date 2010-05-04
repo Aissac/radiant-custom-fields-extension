@@ -27,3 +27,12 @@ When /^I should see "([^\"]*)" within frame "([^\"]*)"$/ do |text, frame_id|
     page.should have_content(text)
   end
 end
+
+When /^I fill in "([^\"]*)" with "([^\"]*)" within frame "([^\"]*)" for #{capture_model}$/ do |field, value, frame_id, target|
+  record = model(target)
+  within_frame(frame_id) do
+    with_scope("##{dom_id(record)}") do
+      fill_in(field, :with => value)
+    end
+  end
+end

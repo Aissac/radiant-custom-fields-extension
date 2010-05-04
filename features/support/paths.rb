@@ -4,10 +4,9 @@ module NavigationHelpers
   
     when /the homepage/i
       root_path
-  
-    when /the welcome page/i
-      welcome_path
-    # Add more page name => path mappings here
+      
+    when /^the (.+?) page$/                                         # translate to named route
+      send "#{$1.downcase.gsub(' ','_')}_path"
   
     else
       raise "Can't find mapping from \"#{page_name}\" to a path."
