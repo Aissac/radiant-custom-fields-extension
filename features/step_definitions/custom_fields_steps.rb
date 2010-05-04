@@ -1,6 +1,6 @@
 Given /^I am logged in as admin$/ do
-  Given "I navigate to \"the welcome page\""
-    And "I enter in \"user_login\" field \"admin\""
-    And "I enter in \"user_password\" field \"password\""
-    And "I click the \"Login\" button"
+  When %Q{I am on the welcome page}
+   And %Q{I fill in "Username or E-mail Address" with "admin"}
+   And %Q{I fill in "Password" with "password"}
+   And %Q{I press "Login"}
 end
