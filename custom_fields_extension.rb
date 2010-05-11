@@ -2,7 +2,7 @@
 require_dependency 'application_controller'
 
 class CustomFieldsExtension < Radiant::Extension
-  version "0.1"
+  version "0.8" #this version is compatible with Radiant 0.8
   description "An extension that lets you add custom fields to a Radiant page."
   url "http://blog.aissac.ro/radiant/custom-fields-extension/"
   
