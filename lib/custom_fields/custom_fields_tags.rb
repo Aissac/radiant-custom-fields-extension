@@ -11,16 +11,18 @@ module CustomFields
     end
   
     desc %{
-      Iterates through all the custom fields in the current page.  The @name@ attribute is not required
-      on any nested custom fields tags.
+      Iterates through all the custom fields in the current page.  The @name@ attribute is not required on any nested custom fields tags.
 
       *Usage*:
 
-      <pre><code>
-        <r:custom_fields:each [order="asc|desc"] [by="name|value|created_at..."] [limit=0] [offset=0]>
-          <r:value />
-        </r:custom_fields:each>
-      </code></pre>
+      <pre><code><r:custom_fields:each 
+       [order="asc|desc"]
+       [by="name|value|created_at..."]
+       [limit=0]
+       [offset=0]
+       >
+         <r:value />
+      </r:custom_fields:each></code></pre>
     }
     tag 'custom_fields:each' do |tag|
       page = tag.locals.page
@@ -37,11 +39,12 @@ module CustomFields
     end
     
     desc %{
-      Renders the value of the custom_field. The @name@ attribute is required on this tag or the parent tag.
-      You can use the @default_value@ attribute to render a default value in case the custom field is unknown.
+      Renders the value of the custom_field. The @name@ attribute is required on this tag or the parent tag. You can use the @default_value@ attribute to render a default value in case the custom field is unknown.
+
       *Usage*:
 
-      <pre><code><r:custom_fields:value name="custom_field_name" [default_value="some_value"] /></code></pre>
+      <pre><code><r:custom_fields:value name="custom_field_name"
+       [default_value="some_value"]/></code></pre>
     }
     tag 'custom_fields:value' do |tag|
       raise TagError, "'name' attribute required" unless name = tag.attr['name'] or tag.locals.custom_fields
@@ -57,12 +60,12 @@ module CustomFields
     
     
     desc %{
-      Renders the containing elements only if the page's custom fields value matches the regular expression 
-      given in @pattern@ attribute. The @name@ attribute is required on this tag or the parent tag.
+      Renders the containing elements only if the page's custom fields value matches the regular expression given in @pattern@ attribute. The @name@ attribute is required on this tag or the parent tag.
 
       *Usage:*
 
-      <pre><code><r:if_matches pattern="regexp" name="custom_field_name">...</r:if_matches></code></pre>
+      <pre><code><r:if_matches pattern="regexp" name="custom_field_name">
+       ...</r:if_matches></code></pre>
     }
     tag 'custom_fields:if_matches' do |tag|
       raise TagError.new("'pattern' attribute required") unless pattern = tag.attr['pattern']
@@ -77,7 +80,8 @@ module CustomFields
     desc %{
       The opposite of @if_matches@ tag.
       
-      <pre><code><r:unless_matches pattern="regexp" name="custom_field_name">...</r:unless_matches></code></pre>
+      <pre><code><r:unless_matches pattern="regexp" name="custom_field_name">
+       ...</r:unless_matches></code></pre>
     }
     
     tag 'custom_fields:unless_matches' do |tag|
