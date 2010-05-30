@@ -1,0 +1,31 @@
+---
+ro: 
+  activerecord:
+    errors:
+      models:
+        custom_field:
+          attributes:
+            name:
+              taken: 'este deja folosit'
+  cf_add_custom_field_input: 'Adauga Custom Field'
+  cf_add_new_custom_field: 'Adauga custom field'
+  cf_cancel: 'Anuleaza'
+  cf_close: 'Inchide'
+  cf_custom_fields: 'Custom Fields'
+  cf_delete: 'Sterge'
+  cf_delete_confirm: 'Esti sigur ca vrei sa stergi "{{name}}" custom field?'
+  cf_enter_new: 'Introdu nou'
+  cf_name: 'Name'
+  cf_select: ' - alege - '
+  cf_select_existing: 'Alege existent'
+  cf_show_custom_field_button: 'Arata Custom Fields'
+  cf_update: 'Actualizeaza'
+  cf_value: 'Value'
+  custom_fields_controller:
+    flash_error:
+      create: 'Eroare la creare:'
+      update: 'Error la actualizare:'
+    flash_success:
+      create: 'Custom field creat cu succes!'
+      destroy: 'Custom field sters cu succes!'
+      update: 'Custom field actualizat cu succes!'
