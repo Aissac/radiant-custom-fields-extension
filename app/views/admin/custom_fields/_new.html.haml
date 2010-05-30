@@ -2,8 +2,8 @@
   %table
     %thead
       %tr
-        %th Name
-        %th Value
+        %th= t('cf_name')
+        %th= t('cf_value')
     %tbody
       %tr
         %td.name
@@ -11,15 +11,15 @@
           = f.text_field :name, :class => 'tb_name', :style => 'display:none'
           %select#select_name.select_name{:name => 'select_name'}
             %option{:value => ''}
-              \- select -
+              =t('cf_select')
             - for cf in @assignable_custom_fields
               %option{:value => cf}
                 = cf
-          = link_to 'Enter new', '#', {:id => 'enter_new_custom_field'}
-          = link_to 'Select existing', '#', {:id => 'cancel_enter_new_custom_field', :class => 'cf_links', :style => 'display:none'}
+          = link_to t('cf_enter_new'), '#', {:id => 'enter_new_custom_field'}
+          = link_to t('cf_select_existing'), '#', {:id => 'cancel_enter_new_custom_field', :class => 'cf_links', :style => 'display:none'}
         %td.value  
           = f.text_area :value, :cols => 40, :rows => 2
       %tr
         %td.actions
-          = submit_tag 'Add Custom Field'
-          = link_to 'Cancel', '#', {:id => 'cancel_new_cf'}
+          = submit_tag t('cf_add_custom_field_input')
+          = link_to t('cf_cancel'), '#', {:id => 'cancel_new_cf'}

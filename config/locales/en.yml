@@ -1,0 +1,31 @@
+---
+en: 
+  activerecord:
+    errors:
+      models:
+        custom_field:
+          attributes:
+            name:
+              taken: 'already in use'
+  cf_add_custom_field_input: 'Add Custom Field'
+  cf_add_new_custom_field: 'Add new custom field'
+  cf_cancel: 'Cancel'
+  cf_close: 'Close'
+  cf_custom_fields: 'Custom Fields'
+  cf_delete: 'Delete'
+  cf_delete_confirm: 'Are you sure you want to remove "{{name}}" custom field?'
+  cf_enter_new: 'Enter new'
+  cf_name: 'Name'
+  cf_select: ' - select - '
+  cf_select_existing: 'Select existing'
+  cf_show_custom_field_button: 'Show Custom Fields'
+  cf_update: 'Update'
+  cf_value: 'Value'
+  custom_fields_controller:
+    flash_error:
+      create: 'Error creating custom field:'
+      update: 'Error updating custom field:'
+    flash_success:
+      create: 'The custom field was successfully created!'
+      destroy: 'The custom field was successfully removed!'
+      update: 'The custom field was successfully updated!'

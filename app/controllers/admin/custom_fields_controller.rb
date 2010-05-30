@@ -11,10 +11,11 @@ class Admin::CustomFieldsController < ApplicationController
     @custom_field = CustomField.new(params[:custom_field])
     params[:select_name].blank? ? @custom_field.name = params[:custom_field][:name] : @custom_field.name = params[:select_name]
     if @custom_field.save
-      flash[:success] = "The Custom Field was succesfully created."
+      flash[:success] = t('custom_fields_controller.flash_success.create')
       redirect_to custom_fields_path(@page)
     else
-      flash[:error] = @custom_field.errors.full_messages.join(", ")
+      flash[:error] = "#{t('custom_fields_controller.flash_error.create')} #{@custom_field.errors.full_messages.join(", ")}"
+      
       redirect_to custom_fields_path(@page)
     end
   end
@@ -22,10 +23,10 @@ class Admin::CustomFieldsController < ApplicationController
   def update
     @custom_field = CustomField.find(params[:id])
     if @custom_field.update_attributes(params[:custom_field])
-      flash[:success] = "The Custom Field was succesfully updated."
+      flash[:success] = t('custom_fields_controller.flash_success.update')
       redirect_to custom_fields_path(@page)
     else
-      flash[:error] = @custom_field.errors.full_messages.join(", ")
+      flash[:error] = "#{t('custom_fields_controller.flash_error.update')} #{@custom_field.errors.full_messages.join(", ")}"
       redirect_to custom_fields_path(@page)
     end
   end
@@ -33,7 +34,7 @@ class Admin::CustomFieldsController < ApplicationController
   def destroy
     @custom_field = CustomField.find(params[:id])
     @custom_field.destroy
-    flash[:success] = "The Custom Field was succesfully deleted."
+    flash[:success] = t('custom_fields_controller.flash_success.destroy')
     redirect_to custom_fields_path(@page)
   end
   

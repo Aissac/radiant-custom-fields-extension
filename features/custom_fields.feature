@@ -16,7 +16,7 @@ Feature: Manipulation Custom Fields
         And I fill in "custom_field_name" with "test custom field" within frame "CFframe"
         And I fill in "custom_field_value" with "test custom field value" within frame "CFframe"
         And I press "Add Custom Field" within frame "CFframe"
-       Then I should see "The Custom Field was succesfully created." within frame "CFframe"
+       Then I should see "The custom field was successfully created!" within frame "CFframe"
         And a custom field should exist with name: "test custom field", value: "test custom field value", page: page "fp"
     
     @javascript
@@ -28,7 +28,7 @@ Feature: Manipulation Custom Fields
         And I select "custom field on another page" from "select_name" within frame "CFframe"
         And I fill in "custom_field_value" with "some value" within frame "CFframe"
         And I press "Add Custom Field" within frame "CFframe"
-       Then I should see "The Custom Field was succesfully created." within frame "CFframe"
+       Then I should see "The custom field was successfully created!" within frame "CFframe"
         And a custom field should exist with name: "custom field on another page", value: "some value", page: page "fp"
     
     @javascript
@@ -38,7 +38,7 @@ Feature: Manipulation Custom Fields
         And I follow "Show Custom Fields"
         And I fill in "custom_field_name" with "new_cf_on_first_page" within frame "CFframe" for custom field "cf"
         And I press "Update" within frame "CFframe"
-       Then I should see "The Custom Field was succesfully updated." within frame "CFframe"
+       Then I should see "The custom field was successfully updated!" within frame "CFframe"
     
     @javascript
     Scenario: Deleting an existing custom field
@@ -46,4 +46,4 @@ Feature: Manipulation Custom Fields
        When I follow "First"
         And I follow "Show Custom Fields"
         And I follow "Delete" within frame "CFframe"
-       Then I should see "The Custom Field was succesfully deleted." within frame "CFframe"
+       Then I should see "The custom field was successfully removed!" within frame "CFframe"

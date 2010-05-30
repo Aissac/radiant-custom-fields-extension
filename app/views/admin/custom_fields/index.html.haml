@@ -1,13 +1,13 @@
 #add_cf
-  %a#add_cf_link{:href => '#'} Add new custom field
+  %a#add_cf_link{:href => '#'}= t('cf_add_new_custom_field')
   #add_cf_div{:style => 'display:none;'}
     = render :partial => 'admin/custom_fields/new'
 
 %table
   %thead
     %tr
-      %th Name
-      %th Value
+      %th= t('cf_name')
+      %th= t('cf_value')
   %tbody
     - @custom_fields.each do |cf|
       - form_for :custom_field, :url => custom_field_path(@page, cf), :html => {:method => :put} do |f|
@@ -17,5 +17,5 @@
           %td.value= f.text_area :value, :value => cf.value, :cols => 50, :rows => 2
         %tr
           %td.actions{ :colspan => 2 }
-            = submit_tag 'Update'
-            = link_to "Delete", custom_field_path(@page, cf), :method => :delete, :confirm => "Are you sure you want to delete '#{cf.name}' custom field?"
+            = submit_tag t('cf_update')
+            = link_to t('cf_delete'), custom_field_path(@page, cf), :method => :delete, :confirm => t('cf_delete_confirm', :name => cf.name)
