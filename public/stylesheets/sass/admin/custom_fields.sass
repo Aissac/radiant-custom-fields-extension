@@ -37,32 +37,33 @@ iframe
       :background #FFF url(/images/admin/exclamation.png) no-repeat 5px 50%
     &.notice
       :background :#FFF url(/images/admin/warning.png) no-repeat 5px 50%
-    
-  table
-    :width 90%
+
+  .cf_box
+    +clearfix
+    :width 95%
     :background-color #F9F9F9
     :border 1px solid #DFDFDF
-    :margin 10px 0 0 5%
-    thead                  
-      :background-color #F1F1F1    
-      th
-        :padding 3px 10px
-    tbody 
-      td
-        :padding 10px 20px 5px 20px
-        :vertical-align top
-        &.name, &.value
-          input, select, textarea
-            :width 100%
-        &.name
-          :width 30%
-        &.value
-          :width 70%
-        &.actions
-          :padding 3px 20px
-          input
-            :float left
-            :margin-right 10px
+    :margin 5px auto
+    .top
+      :background-color #F1F1F1
+      +clearfix
+      :padding 5px 10px
+    .content
+      +clearfix
+      .name, .value
+        input, select, textarea
+          :width 100%
+      .custom_field
+        :padding 10px
+    .name
+      :float left
+      :width 31%
+      :padding-right 3%
+    .value
+      :float left
+      :width 66%
+    .actions
+      :clear both
             
   a
     :color #0066CC
@@ -76,6 +77,6 @@ iframe
     #add_cf_link
       :float right
       :color #000
-      :margin-right 70px
+      :margin-right 25px
       :padding 2px 0 2px 15px
       :background transparent url(/images/admin/plus.png) no-repeat left center

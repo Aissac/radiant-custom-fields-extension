@@ -1,12 +1,13 @@
 #add_cf
   %a#add_cf_link{:href => '#'}= t('cf_add_new_custom_field')
-  #add_cf_div{:style => 'display:none;'}
-    = render :partial => 'admin/custom_fields/new'
+  #add_cf_div.cf_box{:style => 'display:none;'}
+    = render 'new'
 
-%table
-  %thead
-    %tr
-      %th= t('cf_name')
-      %th= t('cf_value')
-  %tbody
+.cf_box
+  .top
+    .name
+      = t('cf_name')
+    .value
+      = t('cf_value')
+  .content
     = render @custom_fields

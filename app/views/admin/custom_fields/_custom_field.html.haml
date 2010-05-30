@@ -1,9 +1,10 @@
-- form_for :custom_field, :url => custom_field_path(@page, custom_field), :html => {:method => :put} do |f|
-  = f.hidden_field :page_id, :value => params[:page_id]
-  %tr{:id => dom_id(custom_field)}
-    %td.name= f.text_field :name, :value => custom_field.name
-    %td.value= f.text_area :value, :value => custom_field.value, :cols => 50, :rows => 2
-  %tr
-    %td.actions{ :colspan => 2 }
+.custom_field{:id => dom_id(custom_field)}
+  - form_for :custom_field, :url => custom_field_path(@page, custom_field), :html => {:method => :put} do |f|
+    = f.hidden_field :page_id, :value => params[:page_id]
+    .name
+      = f.text_field :name, :value => custom_field.name
+    .value
+      = f.text_area :value, :value => custom_field.value, :cols => 50, :rows => 2
+    .actions
       = submit_tag t('cf_update')
       = link_to t('cf_delete'), custom_field_path(@page, custom_field), :method => :delete, :confirm => t('cf_delete_confirm', :name => custom_field.name)

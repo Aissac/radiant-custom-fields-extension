@@ -1,25 +1,23 @@
 - form_for :custom_field, :url => custom_fields_path(@page) do |f|
-  %table
-    %thead
-      %tr
-        %th= t('cf_name')
-        %th= t('cf_value')
-    %tbody
-      %tr
-        %td.name
-          = f.hidden_field :page_id, :value => params[:page_id]
-          = f.text_field :name, :class => 'tb_name', :style => 'display:none'
-          %select#select_name.select_name{:name => 'select_name'}
-            %option{:value => ''}
-              =t('cf_select')
-            - for cf in @assignable_custom_fields
-              %option{:value => cf}
-                = cf
-          = link_to t('cf_enter_new'), '#', {:id => 'enter_new_custom_field'}
-          = link_to t('cf_select_existing'), '#', {:id => 'cancel_enter_new_custom_field', :class => 'cf_links', :style => 'display:none'}
-        %td.value  
-          = f.text_area :value, :cols => 40, :rows => 2
-      %tr
-        %td.actions
-          = submit_tag t('cf_add_custom_field_input')
-          = link_to t('cf_cancel'), '#', {:id => 'cancel_new_cf'}
+  .top
+    .name
+      = t('cf_name')
+    .value
+      = t('cf_value')
+  .content
+    = f.hidden_field :page_id, :value => params[:page_id]
+    .name
+      = f.text_field :name, :class => 'tb_name', :style => 'display:none'
+      %select#select_name.select_name{:name => 'select_name'}
+        %option{:value => ''}
+          =t('cf_select')
+        - for cf in @assignable_custom_fields
+          %option{:value => cf}
+            = cf
+      = link_to t('cf_enter_new'), '#', {:id => 'enter_new_custom_field'}
+      = link_to t('cf_select_existing'), '#', {:id => 'cancel_enter_new_custom_field', :class => 'cf_links', :style => 'display:none'}
+    .value  
+      = f.text_area :value, :cols => 40, :rows => 2
+    .actions
+      = submit_tag t('cf_add_custom_field_input')
+      = link_to t('cf_cancel'), '#', {:id => 'cancel_new_cf'}
