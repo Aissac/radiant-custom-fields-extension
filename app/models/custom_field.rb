@@ -1,5 +1,4 @@
-class CustomField < ActiveRecord::Base
-  
+class CustomField < ActiveRecord::Base  
   belongs_to :page
 
   validates_presence_of       :name
@@ -12,5 +11,4 @@ class CustomField < ActiveRecord::Base
     assigned = find(:all, :conditions => {:page_id => page_id}, :group => "name").map(&:name)
     all - assigned
   end
-  
 end

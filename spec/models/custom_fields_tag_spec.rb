@@ -1,7 +1,6 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
 
-describe "Custom Fields" do
-  
+describe "Custom Fields" do  
   dataset :pages, :custom_fields
   
   before do
@@ -9,7 +8,6 @@ describe "Custom Fields" do
   end
   
   describe "<r:custom_fields:value />" do
-    
     it "<r:custom_fields:value /> renders the value" do
       @page.should render("<r:custom_fields:value name='a_cf_on_first_page' />").as("a_cf_on_first_page_value") 
     end
@@ -32,7 +30,6 @@ describe "Custom Fields" do
   end
 
   describe "<r:custom_fields:if_matches>...</r:custom_fields:if_matches>" do
-    
     it "<r:custom_fields:if_matches>...</r:custom_fields:if_matches> renders the contained block if the custom_field value matches the pattern" do
       @page.should render("<r:custom_fields:if_matches pattern='first' name='a_cf_on_first_page'>true</r:custom_fields:if_matches>").as("true")
     end
@@ -55,7 +52,6 @@ describe "Custom Fields" do
   end
   
   describe "<r:custom_fields:unless_matches>...</r:custom_fields:unless_matches>" do
-  
     it "<r:custom_fields:unless_matches>...</r:custom_fields:unless_matches> renders the contained block if custom_field value does not match the pattern" do
       @page.should render("<r:custom_fields:unless_matches pattern='second' name='a_cf_on_first_page'>true</r:custom_fields:unless_matches>").as("true")    
     end
@@ -78,7 +74,6 @@ describe "Custom Fields" do
   end
   
   describe "<r:custom_fields:each>...</r:custom_fields:each>" do
-  
     it "<r:custom_fields:each>...</r:custom_fields:each> renders the custom_fields of the current page" do
       @page.should render(page_custom_fields_each_tag).as("a_cf_on_first_page_value another_cf_on_first_page_value ")
     end

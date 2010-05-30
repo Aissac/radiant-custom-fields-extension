@@ -1,23 +1,17 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
 
 describe CustomField do
   dataset :pages, :custom_fields
   
+  #columns
+  should_have_column :name, :value, :type => :string
+  
+  #associations
+  should_belong_to :page
+  
+  #validations
   describe "validations" do
-    
-    it "should be valid" do
-      create_custom_field
-      @custom_field.should be_valid
-    end
-    
-    [:name, :value, :page_id].each do |att|
-      it "requires #{att} attribute" do
-        lambda do
-          create_custom_field(att => nil)
-          @custom_field.errors.on(att).should_not be_nil
-        end.should_not change(CustomField, :count)
-      end
-    end
+    should_validate_presence_of :name, :value, :page_id
     
     it "requires 'name' attribute to be unique within 'page_id' scope" do
       lambda do
@@ -28,11 +22,9 @@ describe CustomField do
   end
   
   describe "methods" do
-    
     it "find the assignable custom fields" do
       CustomField.find_assignable_custom_fields(pages(:first).id).should == ["a_cf_on_another_page"]
     end
-    
   end
 
   private
@@ -41,5 +33,4 @@ describe CustomField do
       @custom_field.save
       @custom_field
     end
-
 end

@@ -6,10 +6,6 @@ class CustomFieldsExtension < Radiant::Extension
   description "An extension that lets you add custom fields to a Radiant page."
   url "http://blog.aissac.ro/radiant/custom-fields-extension/"
   
-  define_routes do |map|
-    map.resources :custom_fields, :path_prefix => '/admin/pages/:page_id', :controller  => 'admin/custom_fields'
-  end
-  
   def activate
     Page.send(:include, CustomFields::PageExtensions)
     Page.send(:include, CustomFields::CustomFieldsTags)
