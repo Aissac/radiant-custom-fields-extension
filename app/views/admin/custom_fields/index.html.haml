@@ -9,13 +9,4 @@
       %th= t('cf_name')
       %th= t('cf_value')
   %tbody
-    - @custom_fields.each do |cf|
-      - form_for :custom_field, :url => custom_field_path(@page, cf), :html => {:method => :put} do |f|
-        = f.hidden_field :page_id, :value => params[:page_id]
-        %tr{:id => dom_id(cf)}
-          %td.name= f.text_field :name, :value => cf.name
-          %td.value= f.text_area :value, :value => cf.value, :cols => 50, :rows => 2
-        %tr
-          %td.actions{ :colspan => 2 }
-            = submit_tag t('cf_update')
-            = link_to t('cf_delete'), custom_field_path(@page, cf), :method => :delete, :confirm => t('cf_delete_confirm', :name => cf.name)
+    = render @custom_fields
