@@ -11,12 +11,12 @@ Event.observe(window, 'load', function () {
     $$("input.tb_name")[0].hide();
     $("cancel_enter_new_custom_field").hide();
   });
-  Event.observe('add_new_custom_field_link', 'click', function () {
-    $("add_new_custom_field_div").show();
-    $("add_new_custom_field_link").hide();
+  Event.observe('add_cf_link', 'click', function () {
+    $("add_cf_div").show();
+    $("add_cf_link").hide();
   });
-  Event.observe('cancel_new_custom_field', 'click', function () {
-    $("add_new_custom_field_div").hide();
-    $("add_new_custom_field_link").show();
+  Event.observe('cancel_new_cf', 'click', function () {
+    $("add_cf_div").hide();
+    $("add_cf_link").show();
   })
 });

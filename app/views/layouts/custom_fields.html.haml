@@ -7,4 +7,8 @@
     - @javascripts.uniq.each do |javascript|
       = javascript_include_tag javascript
   %body
-    = yield
+    #custom_fields_content
+      - flash.each do |key, message|
+        %div.flash{ :class => key.to_s }= message
+        
+      = yield
