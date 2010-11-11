@@ -72,19 +72,33 @@ module CustomFields
     end
     
     desc %{
-      Renders the containing elements only if the page's custom fields value matches the regular expression given in @pattern@ attribute. The @name@ attribute is required on this tag or the parent tag.
+      Renders the containing elements only if the page's custom fields value matches the regular expression given in @pattern@ attribute.
+      The @name@ attribute is required on this tag or the parent tag.
+      The @pattern@ attribute is required on this tag.
+      Use the @inherit@ attribute to specify that if a page does not have a custom_field by that name, the tag should find the parent's custom_field. By default @inherit@ is set to @false@.
 
       *Usage:*
 
-      <pre><code><r:if_matches pattern="regexp" name="custom_field_name">
-       ...</r:if_matches></code></pre>
+      <pre><code><r:custom_fields:if_matches name="custom_field_name" pattern="regexp" [inherit="true"]>...</r:custom_fields:if_matches></code></pre>
     }
     tag 'custom_fields:if_matches' do |tag|
       raise TagError.new("'pattern' attribute required") unless pattern = tag.attr['pattern']
       raise TagError.new("'name' attribute required") unless name = tag.attr['name'] or tag.locals.custom_fields
+      inherit = tag.attr["inherit"] || false
+      
       regexp = Regexp.new(pattern)
-      cf = tag.locals.custom_fields || tag.locals.page.custom_fields.find(:first, :conditions => {:name => name})
-      if cf.value.match(regexp)
+      page = tag.locals.page
+      
+      cf = tag.locals.custom_fields || page.custom_fields.find(:first, :conditions => {:name => name})
+      
+      if inherit
+        while (cf.nil? and (not page.parent.nil?)) do
+          page = page.parent
+          cf = page.custom_fields.find(:first, :conditions => {:name => name})
+        end
+      end
+      
+      if cf && cf.value.match(regexp)
         tag.expand
       end
     end
@@ -92,15 +106,26 @@ module CustomFields
     desc %{
       The opposite of @if_matches@ tag.
       
-      <pre><code><r:unless_matches pattern="regexp" name="custom_field_name">
-       ...</r:unless_matches></code></pre>
+      <pre><code><r:custom_fields:unless_matches name="custom_field_name" pattern="regexp" [inherit="true"]>...</r:custom_fields:unless_matches></code></pre>
     }
     tag 'custom_fields:unless_matches' do |tag|
       raise TagError.new("'pattern' attribute required") unless pattern = tag.attr['pattern']
       raise TagError.new("'name' attribute required") unless name = tag.attr['name'] or tag.locals.custom_fields
+      inherit = tag.attr["inherit"] || false
+      
       regexp = Regexp.new(pattern)
-      cf = tag.locals.custom_fields || tag.locals.page.custom_fields.find(:first, :conditions => {:name => name})
-      unless cf.value.match(regexp)
+      page = tag.locals.page
+      
+      cf = tag.locals.custom_fields || page.custom_fields.find(:first, :conditions => {:name => name})
+      
+      if inherit
+        while (cf.nil? and (not page.parent.nil?)) do
+          page = page.parent
+          cf = page.custom_fields.find(:first, :conditions => {:name => name})
+        end
+      end
+      
+      unless cf && cf.value.match(regexp)
         tag.expand
       end
     end

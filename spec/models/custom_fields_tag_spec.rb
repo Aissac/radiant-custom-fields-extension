@@ -41,7 +41,15 @@ describe "Custom Fields" do
     it "<r:custom_fields:if_matches>...</r:custom_fields:if_matches> renders the contained block if the custom_field value matches the pattern and the 'name' attribute is on parent tag" do
       @page.should render("<r:custom_fields name='a_cf_on_first_page'><r:if_matches pattern='first'>true</r:if_matches></r:custom_fields>").as("true")
     end
-  
+    
+    it "<r:custom_fields:if_matches inherit='true'>...</r:custom_fields:if_matches> renders the contained block if the custom_field value on the parent page matches the pattern" do
+      pages(:child).should render("<r:custom_fields:if_matches pattern='parent' name='a_cf_on_parent_page' inherit='true'>true</r:custom_fields:if_matches>").as("true")
+    end
+    
+    it "does not render if custom field not found" do
+      @page.should render("<r:custom_fields:if_matches pattern='whatever' name='some_cf'>true</r:custom_fields:if_matches>").as("")
+    end
+    
     it "errors with 'pattern' attribute not found" do
       @page.should render("<r:custom_fields:if_matches>true</r:custom_fields:if_matches>").with_error("'pattern' attribute required")
     end
@@ -62,6 +70,14 @@ describe "Custom Fields" do
     
     it "<r:custom_fields:unless_matches>...</r:custom_fields:unless_matches> renders the contained block if the custom_field value does not match the pattern and the 'name' attribute is on parent tag" do
       @page.should render("<r:custom_fields name='another_cf_on_first_page'><r:unless_matches pattern='second'>true</r:unless_matches></r:custom_fields>").as("true")
+    end
+    
+    it "<r:custom_fields:unless_matches inherit='true'>...</r:custom_fields:unless_matches> renders the contained block if custom_field value on the parent oage does not match the pattern" do
+      pages(:child).should render("<r:custom_fields:unless_matches pattern='parent' name='a_cf_on_parent_page' inherit='true'>true</r:custom_fields:unless_matches>").as("")    
+    end
+    
+    it "renders if custom field not found" do
+      @page.should render("<r:custom_fields:unless_matches pattern='whatever' name='some_cf'>true</r:custom_fields:unless_matches>").as("true")
     end
     
     it "errors with 'pattern' attribute not found" do
