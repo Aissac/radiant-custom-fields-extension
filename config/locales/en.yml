@@ -13,7 +13,7 @@ en:
   cf_close: 'Close'
   cf_custom_fields: 'Custom Fields'
   cf_delete: 'Delete'
-  cf_delete_confirm: 'Are you sure you want to remove "{{name}}" custom field?'
+  cf_delete_confirm: 'Are you sure you want to remove "%{name}" custom field?'
   cf_enter_new: 'Enter new'
   cf_name: 'Name'
   cf_select: ' - select - '

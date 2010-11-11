@@ -3,13 +3,14 @@ require 'spec_helper'
 describe CustomField do
   dataset :pages, :custom_fields
   
-  #columns
-  should_have_column :name, :value, :type => :string
+  describe "columns" do
+    should_have_column :name, :value, :type => :string
+  end
   
-  #associations
-  should_belong_to :page
+  describe "associations" do
+    should_belong_to :page
+  end
   
-  #validations
   describe "validations" do
     should_validate_presence_of :name, :value, :page_id
     

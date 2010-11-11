@@ -6,7 +6,7 @@ About
 
 An extension by [Aissac][ai] that allows you to add custom fields to [Radiant CMS][rd] pages.
 
-Tested on Radiant 0.7.1, 0.8 and 0.9 RC2.
+Tested on Radiant 0.7.1, 0.8 and 0.9.
 
 Checkout the [screencast][rc]!
 
@@ -56,10 +56,25 @@ Usage
 * Use the `<r:custom_field:each />` tag to iterate over the assigned custom fields of a page.
 * Use the `<r:custom_fields:if_matches />` and `<r:custom_field:unless_matches>` tags to filter the custom fields.
 
+I18n
+---
+
+This extension is translated to English and Romanian.
+
+If you happen to translate it to some other languages please send a pull request.
+
+Patches
+---
+
+If you want to contribute features or fixes please write your specs/cucumber features and code and submit pull requests to these github users:
+
+  * cristi
+  * ihoka
+
 Contributors
 ---
 
-* Cristi Duma ([@cristi_duma][cd])
+* Cristi Duma ([@cristiduma][cd])
 * Istvan Hoka ([@ihoka][ih])
 
 TODO
@@ -70,6 +85,6 @@ TODO
 [ai]: http://www.aissac.ro/
 [rd]: http://radiantcms.org/
 [cfe]: http://github.com/Aissac/radiant-custom-fields-extension/
-[cd]: http://twitter.com/cristi_duma
+[cd]: http://twitter.com/cristiduma
 [ih]: http://twitter.com/ihoka
 [rc]: http://radiantcms.org/blog/archives/2010/03/23/radiantcasts-episode-6-radiant-custom-fields-and-stereotype-extensions/
