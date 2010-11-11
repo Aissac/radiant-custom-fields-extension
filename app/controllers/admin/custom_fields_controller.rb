@@ -15,7 +15,6 @@ class Admin::CustomFieldsController < ApplicationController
       redirect_to custom_fields_path(@page)
     else
       flash[:error] = "#{t('custom_fields_controller.flash_error.create')} #{@custom_field.errors.full_messages.join(", ")}"
-      
       redirect_to custom_fields_path(@page)
     end
   end

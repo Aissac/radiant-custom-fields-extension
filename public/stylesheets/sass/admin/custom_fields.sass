@@ -1,82 +1,82 @@
 =has-layout
-  :display inline-block
+  display: inline-block
   &
-    :display block
+    display: block
 
 =clearfix
-  :overflow hidden
+  overflow: hidden
   +has-layout
 
 =pie-clearfix
   &:after
-    :content " "
-    :display block
-    :height 0
-    :clear both
-    :overflow hidden
-    :visibility hidden
+    content: " "
+    display: block
+    height: 0
+    clear: both
+    overflow: hidden
+    visibility: hidden
   +has-layout
 
 #custom_fields_wrap                   
-  :width 856px
-  :overflow auto
-  :background-color #FFF
+  width: 856px
+  overflow: auto
+  background-color: #FFFFFF
   
 iframe
-  :border none
+  border: none
 
 #custom_fields_content
   .flash
-    :padding 5px 0 5px 25px
-    :margin 0 50px 10px 50px
-    :font #003300
-    :border 2px solid #CCC
+    padding: 5px 0 5px 25px
+    margin: 0 50px 10px 50px
+    font: #003300
+    border: 2px solid #CCC
     &.success
-      :background #FFF url(/images/admin/accept.png) no-repeat 5px 50%
+      background: #FFFFFF url('/images/admin/accept.png') no-repeat 5px 50%
     &.error
-      :background #FFF url(/images/admin/exclamation.png) no-repeat 5px 50%
+      background: #FFFFFF url('/images/admin/exclamation.png') no-repeat 5px 50%
     &.notice
-      :background :#FFF url(/images/admin/warning.png) no-repeat 5px 50%
+      background: #FFFFFF url('/images/admin/warning.png') no-repeat 5px 50%
 
   .cf_box
     +clearfix
-    :width 95%
-    :background-color #F9F9F9
-    :border 1px solid #DFDFDF
-    :margin 5px auto
+    width: 95%
+    background-color: #F9F9F9
+    border: 1px solid #DFDFDF
+    margin: 5px auto
     .top
-      :background-color #F1F1F1
       +clearfix
-      :padding 5px 10px
+      background-color: #F1F1F1
+      padding: 5px 10px
     .content
       +clearfix
       .name, .value
         input, select, textarea
-          :width 100%
+          width: 100%
       .custom_field
-        :padding 10px
+        padding: 10px
     .name
-      :float left
-      :width 31%
-      :padding-right 3%
+      float: left
+      width: 31%
+      padding-right: 3%
     .value
-      :float left
-      :width 66%
+      float: left
+      width: 66%
     .actions
-      :clear both
+      clear: both
             
   a
-    :color #0066CC
-    :text-decoration none
-    :font-size 13px
+    color: #0066CC
+    text-decoration: none
+    font-size: 13px
   textarea
-    :border 1px inset threedface
+    border: 1px inset threedface
 
   #add_cf
     +clearfix
     #add_cf_link
-      :float right
-      :color #000
-      :margin-right 25px
-      :padding 2px 0 2px 15px
-      :background transparent url(/images/admin/plus.png) no-repeat left center
+      float: right
+      color: #000
+      margin-right: 25px
+      padding: 2px 0 2px 15px
+      background: transparent url('/images/admin/plus.png') no-repeat left center
