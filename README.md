@@ -82,7 +82,7 @@ TODO
 * AJAX-ify admin interface.
 
 
-[ai]: http://www.aissac.ro/
+[ai]: http://www.aissac.ro/en
 [rd]: http://radiantcms.org/
 [cfe]: http://github.com/Aissac/radiant-custom-fields-extension/
 [cd]: http://twitter.com/cristiduma
