@@ -24,7 +24,7 @@ describe CustomField do
   
   describe "methods" do
     it "find the assignable custom fields" do
-      CustomField.find_assignable_custom_fields(pages(:first).id).should == ["a_cf_on_another_page"]
+      CustomField.find_assignable_custom_fields(pages(:first).id).should == ["a_cf_on_another_page", "a_cf_on_parent_page"]
     end
   end
 

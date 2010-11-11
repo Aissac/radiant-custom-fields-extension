@@ -11,18 +11,16 @@ module CustomFields
     end
   
     desc %{
-      Iterates through all the custom fields in the current page.  The @name@ attribute is not required on any nested custom fields tags.
+      Iterates through all the custom fields in the current page.
+      The @name@ attribute is not required on any nested custom fields tags.
 
       *Usage*:
 
-      <pre><code><r:custom_fields:each 
-       [order="asc|desc"]
-       [by="name|value|created_at..."]
-       [limit=0]
-       [offset=0]
-       >
-         <r:value />
-      </r:custom_fields:each></code></pre>
+      <pre><code>
+        <r:custom_fields:each [order="asc|desc"] [by="name|value|created_at..."] [limit=0][offset=0]>
+          <r:value />
+        </r:custom_fields:each>
+      </code></pre>
     }
     tag 'custom_fields:each' do |tag|
       page = tag.locals.page
