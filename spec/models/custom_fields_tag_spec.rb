@@ -15,7 +15,11 @@ describe "Custom Fields" do
     it "<r:custom_fields name='first_cf'><r:value /></r:custom_fields> renders value if 'name' attribute is on parent tag" do
       @page.should render("<r:custom_fields name='a_cf_on_first_page'><r:value /></r:custom_fields>").as("a_cf_on_first_page_value")
     end
-  
+    
+    it "<r:custom_fields name='first_cf'><r:value name='a_cf_on_parent_page' inherit='true' /></r:custom_fields> renders value of the custom_field on a parent page" do
+      pages(:child).should render("<r:custom_fields:value name='a_cf_on_parent_page' inherit='true' />").as("a_cf_on_parent_page_value")
+    end
+    
     it "errors with 'name attribute required'" do
       @page.should render("<r:custom_fields:value />").with_error("'name' attribute required")
     end

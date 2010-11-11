@@ -9,5 +9,8 @@ class CustomFieldsDataset < Dataset::Base
       
     create_record :custom_field, :a_cf_on_another_page, 
       {:name => 'a_cf_on_another_page', :value => 'a_cf_on_another_page_value', :page_id => pages(:another).id}
+    
+    create_record :custom_field, :a_cf_on_parent_page,
+      {:name => 'a_cf_on_parent_page', :value => 'a_cf_on_parent_page_value', :page_id => pages(:parent).id}
   end
 end

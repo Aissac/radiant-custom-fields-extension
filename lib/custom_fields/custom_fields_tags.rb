@@ -39,25 +39,37 @@ module CustomFields
     end
     
     desc %{
-      Renders the value of the custom_field. The @name@ attribute is required on this tag or the parent tag. You can use the @default_value@ attribute to render a default value in case the custom field is unknown.
+      Renders the value of the custom_field.
+      The @name@ attribute is required on this tag or the parent tag.
+      Use the @inherit@ attribute to specify that if a page does not have a custom_field by that name, the tag should render the parent's custom_field. By default @inherit@ is set to @false@.
+      You can use the @default_value@ attribute to render a default value in case the custom field is unknown. By default @default_value@ is not set.
 
       *Usage*:
 
-      <pre><code><r:custom_fields:value name="custom_field_name"
-       [default_value="some_value"]/></code></pre>
+      <pre><code><r:custom_fields:value name="custom_field_name" [default_value="some_value"] [inherit="true"] /></code></pre>
     }
     tag 'custom_fields:value' do |tag|
       raise TagError, "'name' attribute required" unless name = tag.attr['name'] or tag.locals.custom_fields
-      page = tag.locals.page
       default_value = tag.attr["default_value"] || ""
+      inherit = tag.attr["inherit"] || false
+      
+      page = tag.locals.page
+      
       cf = tag.locals.custom_fields || page.custom_fields.find(:first, :conditions => {:name => name})
+      
+      if inherit
+        while (cf.nil? and (not page.parent.nil?)) do
+          page = page.parent
+          cf = page.custom_fields.find(:first, :conditions => {:name => name})
+        end
+      end
+      
       if cf
         cf.value
       else
         default_value.blank? ? "Unknown custom field '#{name}'." : default_value
       end
     end
-    
     
     desc %{
       Renders the containing elements only if the page's custom fields value matches the regular expression given in @pattern@ attribute. The @name@ attribute is required on this tag or the parent tag.
@@ -83,7 +95,6 @@ module CustomFields
       <pre><code><r:unless_matches pattern="regexp" name="custom_field_name">
        ...</r:unless_matches></code></pre>
     }
-    
     tag 'custom_fields:unless_matches' do |tag|
       raise TagError.new("'pattern' attribute required") unless pattern = tag.attr['pattern']
       raise TagError.new("'name' attribute required") unless name = tag.attr['name'] or tag.locals.custom_fields
